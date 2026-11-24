@@ -1,0 +1,17 @@
+# Publicação no Render (https://render.com): "New > Blueprint" apontando para este repositório PRIVADO.
+# O disco persistente é obrigatório: é onde ficam os dados e os anexos (plano pago).
+services:
+  - type: web
+    name: prosecurity-correcoes
+    runtime: node
+    plan: starter
+    buildCommand: "echo sem build"
+    startCommand: node server.js
+    healthCheckPath: /api/ping
+    envVars:
+      - key: DADOS_DIR
+        value: /var/data
+    disk:
+      name: dados
+      mountPath: /var/data
+      sizeGB: 5
